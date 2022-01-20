@@ -19,7 +19,7 @@ setlocal
 mkdir %app_dir%
 
 rem get cpu bits length
-IF %PROCESSOR_ARCHITECTURE%==x86 (set bits=32) ELSE (bits=64)
+IF %PROCESSOR_ARCHITECTURE%==x86 (set bits=32) ELSE (set bits=64)
 
 rem wget required files
 rem unzip.exe
