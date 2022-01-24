@@ -2,7 +2,8 @@
 #NOTE: python3 is already in all linux distros, so: no need for shell (:
 
 from subprocess import Popen as popen
-import sys, os, randint
+import sys, os
+from random import randint
 try: import requests
 except: popen([sys.executable, '-m', 'pip', 'install', 'requests']).wait()
 
@@ -30,7 +31,7 @@ with zipfile.ZipFile('unix64.zip', 'r') as zip_ref:
     zip_ref.extractall(f"{app_dir}/unix64")
 #run the app (popen new session)
 popen(['chmod', '+x', f'{app_dir}/unix64/run.sh']).wait()
-popen(['bash', f'{app_dir}/unix64/run.sh'], start_new_session=True, cwd=f'{app_dir}/unix64')
+popen(['bash', os.path.abspath(f'{app_dir}/unix64/run.sh')], start_new_session=True, cwd=f'{app_dir}/unix64')
 #clean: rm Miniconda3*sh && rm unix64.zip && rm this .py file
 os.remove("Miniconda3-py3.9.5-Linux-x86_64.sh")
 os.remove("unix64.zip")
