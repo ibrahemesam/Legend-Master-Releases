@@ -3,21 +3,10 @@
 rem create an empty folder
 set app_dir=Legend-Master-win
 IF exist %app_dir% (
-:loop
-:someRoutine
-setlocal
-%@Try%
-  REM Normal code goes here
-  rem try rename folder if exists
-  rename Legend-Master-win Legend-Master-win.old%RANDOM%
-%@EndTry%
-:@Catch
-  REM Exception handling code goes here
-  goto loop
-:@EndCatch
+    rem try rename folder if exists
+    powershell -c "Try{Rename-Item Legend-Master-win Legend-Master-win.old%RANDOM%}Catch{}"
 ) ELSE ( echo app_dir is ok )
 mkdir %app_dir%
-
 rem get cpu bits length
 IF %PROCESSOR_ARCHITECTURE%==x86 (set bits=32) ELSE (set bits=64)
 
